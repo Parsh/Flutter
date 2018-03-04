@@ -11,10 +11,11 @@ class MyApp extends StatelessWidget {
         appBar: new AppBar(title: new Text('Stateless Widget')),
         body: new Container(
           child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              new Text('Hey'),
-              new Text ('There is'),
-              new Text ('Something out there on Mars!')
+             new MyCard(),
+             new MyCard(),
+             new MyCard()
             ],
           )
           )
@@ -28,7 +29,7 @@ class MyCard extends StatelessWidget{
   final Widget title;
   final Widget icon;
 
-  MyCard(this.title, this.icon);
+  MyCard({this.title, this.icon});
  
   @override
   Widget build(BuildContext context){
