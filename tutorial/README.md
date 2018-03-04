@@ -1,6 +1,6 @@
 # tutorial
 
-A new Flutter project.
+The "Hello World" Flutter project.
 
 ## Getting Started
 
