@@ -1,4 +1,4 @@
-# tutorial
+# Tutorial
 
 The "Hello World" Flutter project.
 
