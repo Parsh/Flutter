@@ -10,12 +10,31 @@ class MyApp extends StatelessWidget {
       home: new Scaffold(
         appBar: new AppBar(title: new Text('Stateless Widget')),
         body: new Container(
+          padding: new EdgeInsets.all(20.0),
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-             new MyCard(),
-             new MyCard(),
-             new MyCard()
+             new MyCard(
+               title: new Text('That is a GUY',
+                  style: new TextStyle(
+                    fontSize: 25.0
+                  )),
+               icon: new Icon(Icons.face, size:40.0, color: Colors.redAccent)
+             ),
+             new MyCard(
+               title: new Text('WE love FOOD',
+                  style: new TextStyle(
+                    fontSize: 25.0
+                  )),
+               icon: new Icon(Icons.fastfood, size:40.0, color: Colors.brown)
+             ),
+             new MyCard(
+               title: new Text('Lets Play a Game',
+                  style: new TextStyle(
+                    fontSize: 25.0
+                  )),
+               icon: new Icon(Icons.games, size:40.0, color: Colors.lightBlue)
+             )
             ],
           )
           )
@@ -34,13 +53,17 @@ class MyCard extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return new Container(
+      padding: new EdgeInsets.only(bottom:20.0),
       child: new Card(
-        child: new Column(
-          children: <Widget>[
-            new Text('In Love with Flutter'),
-            new Icon(Icons.favorite)
+        child: new Container(
+          padding: new EdgeInsets.all(20.0),
+          child:new Column(
+            children: <Widget>[
+              this.title,
+              this.icon
           ]
           )
+        ) 
       )
     );
   }
