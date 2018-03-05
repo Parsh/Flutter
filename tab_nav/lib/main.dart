@@ -48,6 +48,25 @@ class MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
           ],
         ),
       ),
+      bottomNavigationBar: new Material(
+        color: Colors.deepOrange,
+        child: new TabBar(
+         controller: controller,
+          tabs: <Tab>[
+            new Tab(icon: new Icon(Icons.arrow_forward)),
+            new Tab(icon: new Icon(Icons.arrow_downward)),
+            new Tab(icon: new Icon(Icons.arrow_back))
+          ],
+      )
+      ),
+      body: new TabBarView(
+        controller: controller,
+        children: <Widget>[
+          new First.FirstPage(),
+          new Second.SecondPage(),
+          new Third.ThirdPage()
+        ],
+      )
     );
   }
 }
