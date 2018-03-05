@@ -3,7 +3,9 @@ import "package:flutter/material.dart";
 void main(){
   runApp(new MaterialApp(
     home: new HomePage(),
-
+    routes: <String, WidgetBuilder>{
+      '/SecondPage': (BuildContext context) => new SecondPage()
+    }
   ));
 }
 
@@ -23,7 +25,7 @@ class HomePage extends StatelessWidget{
               new IconButton(
                 icon: new Icon(Icons.favorite, color: Colors.redAccent,),
                 iconSize: 70.0,
-                onPressed: null,
+                onPressed: () => Navigator.of(context).pushNamed('/SecondPage')
               ),
               new Padding(padding: new EdgeInsets.only(bottom: 20.0)),
               new Text('Home', style: new TextStyle(fontSize: 25.0, color: Colors.black),)
@@ -49,7 +51,7 @@ class SecondPage extends StatelessWidget{
               new IconButton(
                 icon: new Icon(Icons.home, color: Colors.blue,),
                 iconSize: 70.0,
-                onPressed: null,
+                onPressed: () => Navigator.of(context).pushNamed('/')
               ),
               new Padding(padding: new EdgeInsets.only(bottom: 20.0)),
               new Text('Second', style: new TextStyle(fontSize: 25.0, color: Colors.black),)
