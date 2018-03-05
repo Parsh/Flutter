@@ -36,6 +36,7 @@ class MyTextInputState extends State<MyTextInput> {
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              new Icon(Icons.text_fields, size: 70.0, color: Colors.deepOrange),
               new TextField(
                 decoration: new InputDecoration(hintText: 'Enter the Item'),
                 controller: controller,
