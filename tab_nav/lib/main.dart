@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import './FirstPage.dart' as First;
+import './FirstPage.dart';
 import './SecondPage.dart' as Second;
 import './ThirdPage.dart' as Third;
 
 void main(){
   runApp(
     new MaterialApp(
+      title: 'The Flutter App',
+      color: Colors.deepOrange,
       home: new MyTabs()
     )
   );
@@ -62,7 +64,7 @@ class MyTabsState extends State<MyTabs> with SingleTickerProviderStateMixin {
       body: new TabBarView(
         controller: controller,
         children: <Widget>[
-          new First.FirstPage(),
+          new FirstPage(),
           new Second.SecondPage(),
           new Third.ThirdPage()
         ],
