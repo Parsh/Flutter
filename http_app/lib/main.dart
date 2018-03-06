@@ -30,7 +30,7 @@ Future<String> getData() async{
       }
     );
   var data = JSON.decode(response.body);
-  print(data[0]);
+  print(data);
 }
 
   @override
