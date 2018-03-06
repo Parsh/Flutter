@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './loader.dart';
 
 void main(){
   runApp(
@@ -15,7 +16,9 @@ class Home extends StatelessWidget{
   Widget build(BuildContext context){
     return new Scaffold(
       backgroundColor: Colors.blue,
-      body: new Center()
+      body: new Center(
+        child: new Loader()
+      )
     );
   }
 }
