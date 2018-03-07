@@ -8,7 +8,7 @@
   bool fileExists = false;
   List<Map> fileContent;
 
-  void retrieveData() async{
+  void readFromFile() async{
   path.getApplicationDocumentsDirectory().then((Directory direc){
       jsonFile = new File(direc.path + '/' + fileName);
       jsonFile.exists().then((bool val){
@@ -17,6 +17,7 @@
       }).then((bool fileEx){
         if (fileEx) {
            print(JSON.decode(jsonFile.readAsStringSync()));
+           fileContent = JSON.decode(jsonFile.readAsStringSync());
         }
       });
     });
@@ -53,8 +54,4 @@
       createFile(content, direc, fileName, fileExists);
     }
     });
-  }
-
-  void readFromFile(){
-
   }

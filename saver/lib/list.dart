@@ -14,7 +14,7 @@ var content;
   @override
   void initState(){
     super.initState();
-    io.retrieveData();
+    io.readFromFile();
   }
 
   @override
