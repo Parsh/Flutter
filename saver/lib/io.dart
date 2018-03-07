@@ -7,10 +7,10 @@
   Directory dir;
   String fileName = "ShoppingList.json";
   bool fileExists = false;
-  Map fileContent;
+  List<Map> fileContent;
 
- retrieveData(){
-   path.getApplicationDocumentsDirectory().then((Directory directory){
+  void retrieveData() async{
+  path.getApplicationDocumentsDirectory().then((Directory directory){
       dir = directory;
       jsonFile = new File(dir.path + '/' + fileName);
       jsonFile.exists().then((bool val){
@@ -18,33 +18,40 @@
         return fileExists;
       }).then((bool fileEx){
         if (fileEx) {
-            fileContent = JSON.decode(jsonFile.readAsStringSync());
-            return fileContent;
+           print(JSON.decode(jsonFile.readAsStringSync()));
         }
-        else return {};
       });
     });
+   
 }
   
  
- void createFile(Map<String, int> content, Directory dir, String fileName, bool fileExists){
+ void createFile(content, Directory dir, String fileName, bool fileExists){
     print("Creating File");
+    path.getApplicationDocumentsDirectory().then((Directory directory){
+      dir = directory;
+    })
     File file = new File(dir.path + '/' + fileName);
     file.createSync();
     fileExists = true;
-    file.writeAsStringSync(JSON.encode(content));
+    List lst = [];
+    lst.add(content);
+    print(lst);
+    print(JSON.encode(lst))
+    file.writeAsStringSync(JSON.encode(lst));
     print('Wrote!');
   }
 
-  void writeToFile(String item, int quantity, Directory dir, bool fileExists, File jsonFile, Map fileContent, String fileName){
+  void writeToFile(String item, int quantity){
     print('Writing to File!');
-    Map<String, int> content = {item: quantity};
+    Map content = {'item': item, 'quantity': quantity};
     if (fileExists){
       print('File Exists');
-      Map<String, int> jsonFileContent = JSON.decode(jsonFile.readAsStringSync());
-      jsonFileContent.addAll(content);
+      print(JSON.decode(jsonFile.readAsStringSync()));
+      List jsonFileContent = JSON.decode(jsonFile.readAsStringSync());
+      jsonFileContent.add(content);
+      print(jsonFileContent);
       jsonFile.writeAsStringSync(JSON.encode(jsonFileContent));
-      fileContent = jsonFileContent; //Replace it with a reading mechanism
     }
     else{
       print('File does not exits');

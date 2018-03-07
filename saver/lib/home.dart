@@ -12,18 +12,12 @@ class Home extends StatefulWidget{
 
 class HomeState extends State<Home>{
 
-  File jsonFile;
-  Directory dir;
-  String fileName = "ShoppingList.json";
-  bool fileExists = false;
-  Map<String, int> fileContent;
-
  
   TextEditingController itemController;
   TextEditingController quantityController;
 
   void write(){
-      io.writeToFile(itemController.text, int.parse(quantityController.text), dir, fileExists, jsonFile, fileContent, fileName);
+      io.writeToFile(itemController.text, int.parse(quantityController.text));
   }
 
   @override
@@ -31,17 +25,6 @@ class HomeState extends State<Home>{
     super.initState();
     itemController = new TextEditingController();
     quantityController = new TextEditingController();
-    
-    path.getApplicationDocumentsDirectory().then((Directory directory){
-      dir = directory;
-      jsonFile = new File(dir.path + '/' + this.fileName);
-      jsonFile.exists().then((bool val){
-        this.fileExists = val;
-        return this.fileExists;
-      }).then((bool fileEx){
-        if (fileEx) this.setState(()=> this.fileContent = JSON.decode(jsonFile.readAsStringSync()));
-      });
-    });
   }
 
   @override
@@ -63,8 +46,7 @@ class HomeState extends State<Home>{
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              //new Text("Let's Remember", style: new TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Colors.blue)),
-              new Text(fileContent.toString(), style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.blue)),              
+              new Text("Let's Remember", style: new TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Colors.blue)),
               new Padding(padding: new EdgeInsets.only(bottom: 20.0)),
               new TextField(
                 decoration: new InputDecoration(hintText: "Enter the Item to Buy"),
