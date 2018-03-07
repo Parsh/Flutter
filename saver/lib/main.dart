@@ -7,8 +7,8 @@ void main(){
     new MaterialApp(
       title: 'Shopping List Application',
       color: Colors.blue,
-      routes: {
-        "./list": (BuildContext context) => new list.ShoppingList()
+      routes: <String, WidgetBuilder>{
+        "/list": (BuildContext context) => new list.ShoppingList()
       },
       home: new home.Home()
     )

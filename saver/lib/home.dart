@@ -84,8 +84,8 @@ class HomeState extends State<Home>{
               new Padding(padding: new EdgeInsets.only(bottom: 20.0)),
               new RaisedButton(
                 color: Colors.blue,
-                child: new Icon(Icons.arrow_forward),
-                onPressed: null,
+                child: new Icon(Icons.arrow_forward, color: Colors.white),
+                onPressed: () => Navigator.of(context).pushNamed('/list'),
               )
             ],
           )
