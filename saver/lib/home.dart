@@ -1,5 +1,6 @@
 import "dart:io";
 import "dart:convert";
+import "./io.dart" as io;
 
 import "package:flutter/material.dart";
 import "package:path_provider/path_provider.dart";
@@ -17,33 +18,13 @@ class HomeState extends State<Home>{
   bool fileExists = false;
   Map<String, int> fileContent;
 
-  void createFile(Map<String, int> content, Directory dir, String fileName){
-    print("Creating File");
-    File file = new File(dir.path + '/' + fileName);
-    file.createSync();
-    fileExists = true;
-    file.writeAsStringSync(JSON.encode(content));
-    print('Wrote!')
-  }
-
-  void writeToFile(String item, int quantity){
-    print('Writing to File!');
-    Map<String, int> content = {item: quantity};
-    if (fileExists){
-      print('File Exists');
-      Map<String, int> jsonFileContent = JSON.decode(jsonFile.readAsStringSync());
-      jsonFileContent.addAll(content);
-      jsonFile.writeAsStringSync(JSON.encode(jsonFileContent));
-      setState(()=> fileContent = jsonFileContent);
-    }
-    else{
-      print('File does not exits');
-      createFile(content, dir, fileName);
-    }
-  }
-
+ 
   TextEditingController itemController;
   TextEditingController quantityController;
+
+  void write(){
+      io.writeToFile(itemController.text, int.parse(quantityController.text), dir, fileExists, jsonFile, fileContent, fileName);
+  }
 
   @override
   void initState(){
@@ -98,7 +79,7 @@ class HomeState extends State<Home>{
               new RaisedButton(
                 color: Colors.blue,
                 child: new Text("Save", style: new TextStyle(fontSize: 15.0, color: Colors.white)),
-                onPressed: () => writeToFile(itemController.text, int.parse(quantityController.text)),
+                onPressed: write,
               ),
               new Padding(padding: new EdgeInsets.only(bottom: 20.0)),
               new RaisedButton(
