@@ -12,7 +12,7 @@ class Home extends StatefulWidget{
 
 class HomeState extends State<Home>{
 
- 
+  Directory dir;
   TextEditingController itemController;
   TextEditingController quantityController;
 
