@@ -31,19 +31,21 @@ var content;
       ),
       body: new Container(
         color: Colors.blue,
-        child: new Center(
-          child: new Text(io.fileContent.toString(), style: new TextStyle(fontSize: 20.0, color: Colors.white)),
-     )
+        child: new ListView.builder(
+          itemCount: io.fileContent == null? 0: io.fileContent.length,
+          itemBuilder: (BuildContext context, int index){
+            return new Card(
+              child: new Text(io.fileContent[index]['item'])
+            );
+          },
+      )
     )
   );
   }
 }
 
-/*new ListView.builder(
-          itemCount: io.fileContent == null? 0: io.fileContent.length,
-          itemBuilder: (BuildContext context, int index){
-            return new Card(
-              child: new Text(io.fileContent["Bread"])
-            );
-          },
-        )*/
+/*  new Center(
+          child: new Text(io.fileContent.toString(), style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+     )*/
+
+      

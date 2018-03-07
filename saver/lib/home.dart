@@ -16,6 +16,10 @@ class HomeState extends State<Home>{
 
   void write(){
       io.writeToFile(itemController.text, int.parse(quantityController.text));
+       setState((){
+          itemController.text = "";
+          quantityController.text = "";
+      }); 
   }
 
   @override
