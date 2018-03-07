@@ -1,5 +1,31 @@
  import "dart:io";
  import "dart:convert";
+
+ import "package:path_provider/path_provider.dart" as path;
+
+  File jsonFile;
+  Directory dir;
+  String fileName = "ShoppingList.json";
+  bool fileExists = false;
+  Map fileContent;
+
+ retrieveData(){
+   path.getApplicationDocumentsDirectory().then((Directory directory){
+      dir = directory;
+      jsonFile = new File(dir.path + '/' + fileName);
+      jsonFile.exists().then((bool val){
+        fileExists = val;
+        return fileExists;
+      }).then((bool fileEx){
+        if (fileEx) {
+            fileContent = JSON.decode(jsonFile.readAsStringSync());
+            return fileContent;
+        }
+        else return {};
+      });
+    });
+}
+  
  
  void createFile(Map<String, int> content, Directory dir, String fileName, bool fileExists){
     print("Creating File");
@@ -18,10 +44,14 @@
       Map<String, int> jsonFileContent = JSON.decode(jsonFile.readAsStringSync());
       jsonFileContent.addAll(content);
       jsonFile.writeAsStringSync(JSON.encode(jsonFileContent));
-      fileContent = jsonFileContent;
+      fileContent = jsonFileContent; //Replace it with a reading mechanism
     }
     else{
       print('File does not exits');
       createFile(content, dir, fileName, fileExists);
     }
+  }
+
+  void readFromFile(){
+
   }

@@ -3,7 +3,7 @@ import "dart:convert";
 import "./io.dart" as io;
 
 import "package:flutter/material.dart";
-import "package:path_provider/path_provider.dart";
+import "package:path_provider/path_provider.dart" as path;
 
 class Home extends StatefulWidget{
   @override
@@ -32,7 +32,7 @@ class HomeState extends State<Home>{
     itemController = new TextEditingController();
     quantityController = new TextEditingController();
     
-    getApplicationDocumentsDirectory().then((Directory directory){
+    path.getApplicationDocumentsDirectory().then((Directory directory){
       dir = directory;
       jsonFile = new File(dir.path + '/' + this.fileName);
       jsonFile.exists().then((bool val){
