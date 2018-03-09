@@ -15,7 +15,7 @@ class HomeState extends State<Home>{
   TextEditingController quantityController;
 
   void write(){
-      io.writeToFile(itemController.text, int.parse(quantityController.text));
+      io.writeToFile(itemController.text, quantityController.text);
        setState((){
           itemController.text = "";
           quantityController.text = "";
@@ -41,15 +41,18 @@ class HomeState extends State<Home>{
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("Home"),
-        backgroundColor: Colors.blue
+        backgroundColor: Colors.blue,
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: ()=> Navigator.of(context).pushNamed('/list'))
+        ],
       ),
       body: new Container(
-          padding: new EdgeInsets.only(top: 20.0),
+          padding: new EdgeInsets.only(top: 50.0),
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              new Text("Let's Remember", style: new TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Colors.blue)),
-              new Padding(padding: new EdgeInsets.only(bottom: 20.0)),
+              new Text("Let's Remember", style: new TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold, color: Colors.blue)),
+              new Padding(padding: new EdgeInsets.only(bottom: 30.0)),
               new TextField(
                 decoration: new InputDecoration(hintText: "Enter the Item to Buy"),
                 controller: itemController, 
@@ -59,18 +62,12 @@ class HomeState extends State<Home>{
                 decoration: new InputDecoration(hintText: "Enter the Quantity"),
                 controller: quantityController,
               ),
-              new Padding(padding: new EdgeInsets.only(bottom: 30.0)),
+              new Padding(padding: new EdgeInsets.only(bottom: 40.0)),
               new RaisedButton(
                 color: Colors.blue,
                 child: new Text("Save", style: new TextStyle(fontSize: 15.0, color: Colors.white)),
                 onPressed: write,
               ),
-              new Padding(padding: new EdgeInsets.only(bottom: 20.0)),
-              new RaisedButton(
-                color: Colors.blue,
-                child: new Icon(Icons.arrow_forward, color: Colors.white),
-                onPressed: () => Navigator.of(context).pushNamed('/list'),
-              )
             ],
           )
       )

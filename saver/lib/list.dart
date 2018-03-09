@@ -17,6 +17,7 @@ var content;
     io.readFromFile();
   }
 
+
   @override
   Widget build(BuildContext context){
     return new Scaffold(
@@ -30,13 +31,16 @@ var content;
         ),*/ 
       ),
       body: new Container(
-        color: Colors.blue,
         child: new ListView.builder(
           itemCount: io.fileContent == null? 0: io.fileContent.length,
           itemBuilder: (BuildContext context, int index){
-            return new Card(
-              child: new Text(io.fileContent[index]['item'])
-            );
+            return new Container(
+              color: Colors.white,
+              child: new ListTile(
+              title: new Text(io.fileContent[index]['item'], style: new TextStyle(fontSize: 20.0)),
+              trailing: new Text(io.fileContent[index]['quantity'].toString(), style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
+            )
+           ) ;
           },
       )
     )

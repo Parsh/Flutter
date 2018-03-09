@@ -36,7 +36,7 @@
     print('Wrote!');
   }
 
-  void writeToFile(String item, int quantity) async{
+  void writeToFile(String item, String quantity) async{
 
     path.getApplicationDocumentsDirectory().then((Directory direc){
     print('Writing to File!');
