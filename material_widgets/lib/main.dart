@@ -34,12 +34,26 @@ class _HomePageState extends State<HomePage> {
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      body: new Container(
-        child: new RaisedButton(
-          child: new Text("Press me"),
-          onPressed: () => new SnackBar(content: new Text('Pressed!'),)
-        )
-      ),
+      body: new MyBody()
     );
+  }
+}
+
+class MyBody extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+     return new Container(
+        child: new Center(
+           child: new RaisedButton(
+               child: new Text("Press me"),
+               onPressed: () => Scaffold.of(context).showSnackBar(
+                 new SnackBar(
+                   content: new Text("Pressed!"),
+                   duration: new Duration(seconds: 1),
+                 )
+               )
+           )
+        )   
+      );
   }
 }
