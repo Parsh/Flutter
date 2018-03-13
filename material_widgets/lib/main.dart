@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      body: new MyBody()
+      body: new MyBody() //created MyBody class seperately as, if implemented here, the Scaffold.of(context) was not able to find the scaffold on this context as it was not yet attached to it.
     );
   }
 }
@@ -45,13 +45,22 @@ class MyBody extends StatelessWidget {
      return new Container(
         child: new Center(
            child: new RaisedButton(
+
                child: new Text("Press me"),
-               onPressed: () => Scaffold.of(context).showSnackBar(
-                 new SnackBar(
-                   content: new Text("Pressed!"),
-                   duration: new Duration(seconds: 1),
-                 )
-               )
+              //  onPressed: () => Scaffold.of(context).showSnackBar(
+              //    new SnackBar(
+              //      content: new Text("Pressed!"),
+              //      duration: new Duration(seconds: 1),
+              //    )
+              //  )
+
+              onPressed: () => showDialog(
+                context: context, 
+                child: new AlertDialog(
+                  content: new Text("Pressed!"),
+                  )
+                ),
+
            )
         )   
       );
