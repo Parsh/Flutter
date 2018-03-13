@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      body: new MyBody() //created MyBody class seperately as, if implemented here, the Scaffold.of(context) was not able to find the scaffold on this context as it was not yet attached to it.
+      body: new MyBody2() //created MyBody class seperately as, if implemented here, the Scaffold.of(context) was not able to find the scaffold on this context as it was not yet attached to it.
     );
   }
 }
@@ -64,5 +64,36 @@ class MyBody extends StatelessWidget {
            )
         )   
       );
+  }
+}
+
+
+class MyBody2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      child: new Stepper(
+        steps: <Step>[
+         new Step(
+           title: new Text("Step 1"),
+           content: new Text("Content for step 1"),
+           isActive: true
+         ),
+         new Step(
+           title: new Text("Step 1"),
+           content: new Text("Content for step 1"),
+           isActive: true
+         ),
+         new Step(
+           title: new Text("Step 1"),
+           content: new Text("Content for step 1"),
+           isActive: true,
+          
+         )
+        ],
+         currentStep: 0,
+         type: StepperType.vertical,
+      )
+    );
   }
 }
