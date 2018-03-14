@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 
 class MyCard extends StatefulWidget {
+
+  final String imageURL;
+  final Map<String, String> brief;
+  final Map<String, String> detail;
+
+
+  MyCard(this.imageURL, this.brief, this.detail);
+
   @override
   _MyCardState createState() => new _MyCardState();
 }
 
 class _MyCardState extends State<MyCard> {
 
+  bool open = false;
 
   Widget briefSection(){
     return new InkWell(
-      onTap: () => print("Tapped"),
+      onTap: () => setState((){
+        open = !open;
+      }),
       child: new Container(
                 margin: new EdgeInsets.all(16.0),
                 child: new Row(
@@ -19,8 +30,8 @@ class _MyCardState extends State<MyCard> {
                      child: new Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        new Text("Stephen Hawking", style: Theme.of(context).textTheme.headline),
-                        new Text("RIP 1942-2018", style: Theme.of(context).textTheme.body1)
+                        new Text(widget.brief['header'], style: Theme.of(context).textTheme.headline),
+                        new Text(widget.brief['body'], style: Theme.of(context).textTheme.body1)
                       ],
                     ),
                    ),
@@ -35,7 +46,6 @@ class _MyCardState extends State<MyCard> {
   }
 
   Widget detailSection(){
-
     return new Column(
       children: <Widget>[
         new Divider(),
@@ -44,9 +54,9 @@ class _MyCardState extends State<MyCard> {
             child: new Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-                new Text("Physics can take one beyond one's physical limitations", style: Theme.of(context).textTheme.headline),
+                new Text(widget.detail['header'], style: Theme.of(context).textTheme.headline),
                 new Padding(padding: new EdgeInsets.only(bottom: 10.0)),
-                new Text("One of the Greatest Minds of All Time, who set the theory of cosmology as the union of relativity and quantum mechanics. Professor Stephen Hawking, #RIP", style: Theme.of(context).textTheme.body1)
+                new Text(widget.detail['body'], style: Theme.of(context).textTheme.body1)
         ]
       ),
     )
@@ -62,9 +72,14 @@ class _MyCardState extends State<MyCard> {
             child: new Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              new Image.network("https://images.news18.com/ibnlive/uploads/2017/03/Stephen-Hawking.jpg"),
+              new Image.network(widget.imageURL),
               briefSection(),
-              detailSection()
+              new AnimatedCrossFade(
+                firstChild: detailSection(),
+                secondChild: new Container(),
+                crossFadeState: open ? CrossFadeState.showFirst: CrossFadeState.showSecond,
+                duration: new Duration(milliseconds: 300),
+              ),
             ],
           )
          )     

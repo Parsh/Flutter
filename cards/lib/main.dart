@@ -26,7 +26,10 @@ class HomePage extends StatelessWidget {
         title: new Text(title),
         backgroundColor: Colors.pink,
       ),
-      body: new card.MyCard()
+      body: new card.MyCard(
+        "https://images.news18.com/ibnlive/uploads/2017/03/Stephen-Hawking.jpg",
+        {"header":"Stephen Hawking", "body": "RIP 1942-2018"},
+        {"header": "Physics can take one beyond one's physical limitations" , "body": "One of the Greatest Minds of All Time, who set the theory of cosmology as the union of relativity and quantum mechanics. Professor Stephen Hawking, #RIP" } )
     );
   }
 }
