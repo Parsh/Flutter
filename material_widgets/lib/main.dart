@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             ],
         ),
       ),
-      body: tabBar(), 
+      body: tabBar(),
       bottomNavigationBar: new Material(
         color: Colors.teal,
         child: new TabBar(
@@ -75,6 +75,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               new Icon(Icons.email)
             ],
         ),
+      ),
+      floatingActionButton: new FloatingActionButton(
+         child: new Icon(Icons.add),
+         backgroundColor: Colors.teal,
+         onPressed: ()=> print("Pressed"),
       ),
     );
   }
